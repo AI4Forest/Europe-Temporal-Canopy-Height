@@ -24,6 +24,31 @@ var canopy_height_2021 = ee.ImageCollection('projects/worldwidemap/assets/europe
 var canopy_height_2022 = ee.ImageCollection('projects/worldwidemap/assets/europe_2022').mosaic()
 ```
 
+To download the map, you can use the following Google Earth Engine JavaScript snippet:
+```
+var region_of_interest = ...
+var canopy_height_2020 = ee.ImageCollection('projects/worldwidemap/assets/europe_2020').mosaic();
+
+// or all years combined
+// var canopy_stack = canopy_height_2019
+//  .rename('canopy_2019')
+//  .addBands(canopy_height_2020.rename('canopy_2020'))
+//  .addBands(canopy_height_2021.rename('canopy_2021'))
+//  .addBands(canopy_height_2022.rename('canopy_2022'));
+
+var clipped_canopy = canopy_height_2020.clip(region_of_interest);
+Export.image.toDrive({
+  image: clipped_canopy,
+  description: 'pauls_et_al_2025_canopy_height_2020_export',
+  folder: 'GEE_exports', // Optional: specify your Drive folder
+  fileNamePrefix: 'pauls_et_al_2025_canopy_height_2020_export',
+  region: region_of_interest.geometry(),
+  scale: 10, 
+  crs: 'EPSG:3857', // Adjust CRS if needed
+  maxPixels: 1e13
+});
+```
+
 ## Acknowledgements
 
 This paper is part of the project *AI4Forest*, which is funded by the
