@@ -66,6 +66,11 @@ DFG (INST 211/667-1). We also appreciate the hardware donation of an
 A100 Tensor Core GPU from Nvidia and thank Google for
 their compute resources provided (Google Earth Engine).
 
+## License
+
+All data products (tree height maps, derived datasets) are
+licensed under Creative Commons Attribution 4.0 International
+(CC-BY 4.0) — see [DATA_LICENSE](./DATA_LICENSE).
 
 ## Citing the paper
 
